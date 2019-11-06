@@ -4,9 +4,11 @@ import os
 from PIL import Image
 import hashlib
 import io
+import urllib.request
+from urllib.parse import urlparse
 
 
-def image1(url) :
+def image(url) :
     folder_path = path = "C:\\Users\\ABIJITH\\Pictures\\scraped"
     try:
         image_content = requests.get(url).content
@@ -23,3 +25,8 @@ def image1(url) :
         print(f"SUCCESS - saved {url} - as {file_path}")
     except Exception as e:
         print(f"ERROR - Could not save {url} - {e}")
+
+def name(url) :
+    parsed = urlparse(url)
+    name =os.path.splitext(os.path.basename(parsed.path))[0]
+    return name
